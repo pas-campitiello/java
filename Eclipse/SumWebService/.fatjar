@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Fri Jan 09 01:15:28 CET 2009
+onejar.license.required=true
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=false
+jarname=SumWebService.jar
+manifest.mergeall=true
+manifest.mainclass=ws.example.SumCalculatorServiceClient
+manifest.file=<createnew>
+jarname.isextern=false
+onejar.expand=
+excludes=
+includes=

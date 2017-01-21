@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+<!-- 
+Col metodo GET viene generata una URL del tipo: action?nome1=valore1&nome2=valore2&nome3=valore3&... 
+dove action è la URL specificata con il comando ACTION (in questo caso il nome della servlet).
+
+Col metodo POST, a differenza che con il GET, alla URL specificata da ACTION non viene aggiunto alcunché,
+quindi la URL generata avrà solo action senza "?nome1=valore1&nome2=valore2&nome3=valore3&...".
+ -->
+
+<form action=Prova method="GET">
+ <input name = "nome" type = "text"/>
+ <input type = "submit" value = "Lancia"/>
+</form>
+
+</body>
+</html>

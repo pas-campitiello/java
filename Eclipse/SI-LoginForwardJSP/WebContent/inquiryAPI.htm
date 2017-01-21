@@ -1,0 +1,810 @@
+<html><head>
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>UDDI INQUIRY APIs - RICERCA</title>
+
+<script type="text/javascript">
+function validate_required(field)
+{
+ with (field)
+ {
+   if (value==null||value=="")
+   {
+     return false;
+   }
+   else {return true}
+ }
+}
+
+function validate_form(field,thisform)
+{
+ with (thisform)
+ {
+  if ( validate_required(field,"La prima textbox è vuota!")==false )
+  {
+    alert("La prima textbox è vuota!");
+  	field.focus();
+  	return false;
+  }
+ }
+}
+
+function validate_formGet(field1,field2,thisform)
+{
+ with (thisform)
+ {
+  if ( (validate_required(field1)==false) || (validate_required(field2)==false) )
+  {
+    alert("Almeno una textbox è vuota!");
+  	field1.focus();
+  	return false;
+  }
+ }
+}
+
+</script>
+
+</head><body>
+
+ <table id="table2" width="100%" border="1" cellpadding="5">
+    <tbody><tr>
+		<td valign="top" align="center" bgcolor="#66FF66">
+			<p style="margin-top: 0pt; margin-bottom: 0pt;">
+			<font face="Verdana">UDDI INQUIRY APIs -
+			<b>
+			RICERCA</b></font></p></td>
+	</tr>
+	<tr>
+		<td valign="top" height="400">
+		<div align="right">
+			<div align="left">
+			<table id="table33" width="100%" border="0" bordercolor="#c0c0c0" cellpadding="3">
+				<tbody><tr>
+					<td width="104">
+					<form method="POST" action="ClientUDDIWeb">
+						<p style="margin-top: 0pt; margin-bottom: 0pt;">
+						<input value="Refresh database" name="B27" type="submit"></p>
+						<input type="hidden" name="comando" value="refresh_database">
+					</form>
+					</td>
+					<td valign="top" width="509">
+					<p style="margin-top: 0pt; margin-bottom: 0pt;">
+					<font size="1" face="Verdana">E' consigliato fare un refresh </font>
+					</p>
+					<p style="margin-top: 0pt; margin-bottom: 0pt;">
+					<font size="1" face="Verdana">del database 
+					periodicamente.</font></p></td>
+					<td valign="top">
+					<div align="right">
+						<table id="table34" style="border-collapse: collapse;" width="189" border="1" bordercolor="#c0c0c0" cellpadding="3">
+							<tbody><tr>
+								<td align="center"><b>
+								<font size="1" face="Verdana">
+					<a href="index.jsp">HOME</a></font></b></td>
+								<td width="115" align="center"><b>
+		<a href="#helpparametri"><font size="1" face="Verdana">HELP parametri</font></a></b></td>
+							</tr>
+						</tbody></table>
+					</div>
+					</td>
+				</tr>
+			</tbody></table>
+			<br>
+			</div>
+		</div>
+		<form method="post" action="ClientUDDIWeb" onsubmit="return validate_form(nomeBE,this)">
+			<div style="background-color: rgb(255, 255, 153);">
+			<p style="margin-top: 0pt; margin-bottom: 0pt;" align="left"><b><u>
+			<font size="2" face="Verdana">Find Business Entity</font></u></b><br>
+				</p>
+				</div>
+				<table id="table15" width="100%" border="0">
+			<tbody><tr>
+					<td width="148">
+					<p style="margin-top: 0pt; margin-bottom: 0pt;"><font size="1" face="Verdana">Nome 
+					BE da 
+					cercare</font></p></td>
+					<td width="147">
+					<p style="margin-top: 0pt; margin-bottom: 0pt;"><font size="1" face="Verdana">Filtro 
+					|| Nome registry</font></p></td>
+					<td width="72">
+					<p style="margin-top: 0pt; margin-bottom: 0pt;"><font size="1" face="Verdana">Standard</font></p></td>
+					<td width="147">
+					<p style="margin-top: 0pt; margin-bottom: 0pt;"><font size="1" face="Verdana">valore/codice 
+					relativo</font></p></td>
+					<td width="39">
+					<p style="margin-top: 0pt; margin-bottom: 0pt;"><font size="1" face="Verdana">%</font></p></td>
+					<td>
+					<p style="margin-top: 0pt; margin-bottom: 0pt;"><font size="1" face="Verdana">FindQualifier</font></p></td>
+				</tr>
+			</tbody></table>
+			<p style="margin-top: 0pt; margin-bottom: 0pt;">
+			<input name="nomeBE" size="20" type="text"> 
+			<input name="filtroBE" size="20" type="text" value="all"> <select size="1" name="standardBE">
+			<option></option>
+			<option>iso3166</option>
+			<option>naics</option>
+			<option>unspsc</option>
+			</select> <input name="valStandBE" size="20" type="text"> 
+			<select size="1" name="percBE">
+			<option>0</option>
+			<option>25</option>
+			<option>50</option>
+			<option>75</option>
+			</select> <select size="1" name="findQualBE">
+			<option>caseSensitiveMatch</option>
+			<option>exactNameMatch</option>
+			<option>sortByDateAsc</option>
+			<option>sortByDateDesc</option>
+			<option>sortByNameAsc</option>
+			<option>sortByNameDesc</option>
+			</select>&nbsp;&nbsp; 
+			<input value="Cerca" name="Invia" type="submit">
+			<input value="Reimposta" name="B11" type="reset"></p>
+			<input name="comando" value="find_business" type="hidden">
+		</form>
+		<form method="post" action="ClientUDDIWeb" onsubmit="return validate_form(nomeBS,this)">
+			<div style="background-color: rgb(255, 255, 153);">
+			<p style="margin-top: 0pt; margin-bottom: 0pt;" align="left"><b><u>
+			<font size="2" face="Verdana">Find Business Service</font></u></b><br>
+				</p>
+				</div>
+				<table id="table16" width="100%" border="0">
+			<tbody><tr>
+					<td width="148">
+					<p style="margin-top: 0pt; margin-bottom: 0pt;"><font size="1" face="Verdana">Nome 
+					BS da 
+					cercare</font></p></td>
+					<td width="148">
+					<p style="margin-top: 0pt; margin-bottom: 0pt;"><font size="1" face="Verdana">Filtro 
+					|| Nome registry</font></p></td>
+					<td width="72">
+					<p style="margin-top: 0pt; margin-bottom: 0pt;"><font size="1" face="Verdana">Standard</font></p></td>
+					<td width="147">
+					<p style="margin-top: 0pt; margin-bottom: 0pt;"><font size="1" face="Verdana">valore/codice 
+					relativo</font></p></td>
+					<td width="40">
+					<p style="margin-top: 0pt; margin-bottom: 0pt;"><font size="1" face="Verdana">%</font></p></td>
+					<td>
+					<p style="margin-top: 0pt; margin-bottom: 0pt;"><font size="1" face="Verdana">FindQualifier</font></p></td>
+				</tr>
+			</tbody></table>
+			<p style="margin-top: 0pt; margin-bottom: 0pt;">
+			<input name="nomeBS" size="20" type="text">
+			<input name="filtroBS" size="20" type="text" value="all"> <select size="1" name="standardBS">
+			<option></option>
+			<option>iso3166</option>
+			<option>naics</option>
+			<option>unspsc</option>
+			</select> <input name="valStandBS" size="20" type="text">  
+			<select size="1" name="percBS">
+			<option>0</option>
+			<option>25</option>
+			<option>50</option>
+			<option>75</option>
+			</select> <select size="1" name="findQualBS">
+			<option>caseSensitiveMatch</option>
+			<option>exactNameMatch</option>
+			<option>sortByDateAsc</option>
+			<option>sortByDateDesc</option>
+			<option>sortByNameAsc</option>
+			<option>sortByNameDesc</option>
+			</select>&nbsp;&nbsp; 
+			<input value="Cerca" name="Invia" type="submit">
+			<input value="Reimposta" name="B13" type="reset"></p>
+			<input name="comando" value="find_service" type="hidden">
+		</form>
+		<form method="post" action="ClientUDDIWeb" onsubmit="return validate_form(nomeTM,this)">
+			<div style="background-color: rgb(255, 255, 153);">
+			<p style="margin-top: 0pt; margin-bottom: 0pt;" align="left"><b><u>
+			<font size="2" face="Verdana">Find TModel</font></u></b><br>
+				</p>
+				</div>
+				<table id="table17" width="100%" border="0">
+			<tbody><tr>
+					<td width="148">
+					<p style="margin-top: 0pt; margin-bottom: 0pt;"><font size="1" face="Verdana">Nome 
+					TM da 
+					cercare</font></p></td>
+					<td width="145">
+					<p style="margin-top: 0pt; margin-bottom: 0pt;">
+					<font size="1" face="Verdana">all || Nome registry</font></p></td>
+					<td>
+					<p style="margin-top: 0pt; margin-bottom: 0pt;"><font size="1" face="Verdana">FindQualifier</font></p></td>
+				</tr>
+			</tbody></table>
+			<p style="margin-top: 0pt; margin-bottom: 0pt;">
+			<input name="nomeTM" size="20" type="text"><font size="2" face="Verdana">
+			<input name="filtroTM" size="20" type="text" value="all"></font><font size="1" face="Verdana">
+			</font><select size="1" name="findQualTM">
+			<option>caseSensitiveMatch</option>
+			<option>exactNameMatch</option>
+			<option>sortByDateAsc</option>
+			<option>sortByDateDesc</option>
+			<option>sortByNameAsc</option>
+			<option>sortByNameDesc</option>
+			</select>&nbsp;&nbsp; 
+			<input value="Cerca" name="Invia" type="submit"> <input value="Reimposta" name="B15" type="reset"></p>
+			<input name="comando" value="find_tmodel" type="hidden">
+		</form>
+		<form method="post" action="ClientUDDIWeb" onsubmit="return validate_form(nomeBT,this)">
+			<div style="background-color: rgb(255, 255, 153);">
+			<p style="margin-top: 0pt; margin-bottom: 0pt;" align="left"><b><u>
+			<font size="2" face="Verdana">Find BindingTemplate</font></u></b><br>
+				</p>
+				</div>
+				<table id="table18" width="100%" border="0">
+			<tbody><tr>
+					<td width="267">
+					<p style="margin-top: 0pt; margin-bottom: 0pt;">
+					<font size="1" face="Verdana">Service Key del BS in cui 
+					cercare</font></p></td>
+					<td width="148">
+					<p style="margin-top: 0pt; margin-bottom: 0pt;">
+					<font size="1" face="Verdana">all || Nome registry</font></p></td>
+					<td>
+					<p style="margin-top: 0pt; margin-bottom: 0pt;"><font size="1" face="Verdana">FindQualifier</font></p></td>
+				</tr>
+			</tbody></table>
+			<p style="margin-top: 0pt; margin-bottom: 0pt;">
+			<input name="nomeBT" size="40" type="text"><font size="2" face="Verdana">
+			<input name="filtroBT" size="20" type="text" value="all"> </font><select size="1" name="findQualBT">
+			<option>caseSensitiveMatch</option>
+			<option>exactNameMatch</option>
+			<option>sortByDateAsc</option>
+			<option>sortByDateDesc</option>
+			<option>sortByNameAsc</option>
+			<option>sortByNameDesc</option>
+			</select>&nbsp;&nbsp; 
+			<input value="Cerca" name="Invia" type="submit"> <input value="Reimposta" name="B17" type="reset"></p>
+			<input name="comando" value="find_binding" type="hidden">
+		</form>
+		<form method="post" action="ClientUDDIWeb" onsubmit="return validate_form(BKBEsucuicercareRB,this)">
+			<div style="background-color: rgb(255, 255, 153);">
+			<p style="margin-top: 0pt; margin-bottom: 0pt;" align="left"><b><u>
+			<font size="2" face="Verdana">Find Related Businesses</font></u></b><br>
+				</p>
+				</div>
+				<table id="table32" width="100%" border="0">
+			<tbody><tr>
+					<td width="268">
+					<p style="margin-top: 0pt; margin-bottom: 0pt;">
+					<font face="Verdana"><font size="1">Business Key</font><font size="1"> 
+					della BE</font></font><font size="1" face="Verdana"> su cui 
+					cercare</font></p></td>
+					<td width="148">
+					<p style="margin-top: 0pt; margin-bottom: 0pt;">
+					<font size="1" face="Verdana">all || Nome registry</font></p></td>
+					<td>
+					<p style="margin-top: 0pt; margin-bottom: 0pt;"><font size="1" face="Verdana">FindQualifier</font></p></td>
+				</tr>
+			</tbody></table>
+			<p style="margin-top: 0pt; margin-bottom: 0pt;">
+			<input name="BKBEsucuicercareRB" size="40" type="text"><font size="2" face="Verdana">
+			<input name="filtroRB" size="20" type="text" value="all"> </font>
+			<select size="1" name="findQualRB">
+			<option>caseSensitiveMatch</option>
+			<option>exactNameMatch</option>
+			<option>sortByDateAsc</option>
+			<option>sortByDateDesc</option>
+			<option>sortByNameAsc</option>
+			<option>sortByNameDesc</option>
+			</select>&nbsp;&nbsp; 
+			<input value="Cerca" name="Invia0" type="submit">
+			<input value="Reimposta" name="B26" type="reset"></p>
+			<input name="comando" value="find_relatedbusinesses" type="hidden">
+		</form>
+		<br>
+		
+		<form method="post" action="ClientUDDIWeb" onsubmit="return validate_formGet(nomeRegGBED,BusinessKeyGBED,this)">
+			<div style="background-color: #CCCCFF;">
+			<p style="margin-top: 0pt; margin-bottom: 0pt;" align="left"><b><u>
+			<font size="2" face="Verdana">Get Business Detail</font></u></b><br>
+				</p>
+				</div>
+				<table id="table23" width="100%" border="0">
+			<tbody><tr>
+					<td width="147">
+					<p style="margin-top: 0pt; margin-bottom: 0pt;"><font size="1" face="Verdana">Nome 
+					registry</font></p></td>
+					<td width="1066">
+					<p style="margin-top: 0pt; margin-bottom: 0pt;">
+					<font size="1" face="Verdana">Business Key</font></p></td>
+				</tr>
+			</tbody></table>
+			<p style="margin-top: 0pt; margin-bottom: 0pt;">
+			<input name="nomeRegGBED" size="20" type="text"> 
+			<input name="BusinessKeyGBED" size="40" type="text">&nbsp;&nbsp; 
+			<input value="Estrai dettagli" name="Invia" type="submit"> <input value="Reimposta" name="B19" type="reset"></p>
+			<input name="comando" value="get_businessdetail" type="hidden">
+		</form>
+		<form method="post" action="ClientUDDIWeb" onsubmit="return validate_formGet(nomeRegGBSD,ServiceKeyGBSD,this)">
+			<div style="background-color: #CCCCFF;">
+			<p style="margin-top: 0pt; margin-bottom: 0pt;" align="left"><b><u>
+			<font size="2" face="Verdana">Get Service Detail</font></u></b><br>
+				</p>
+				</div>
+				<table id="table24" width="100%" border="0">
+			<tbody><tr>
+					<td width="148">
+					<p style="margin-top: 0pt; margin-bottom: 0pt;"><font size="1" face="Verdana">Nome 
+					registry</font></p></td>
+					<td>
+					<font size="1" face="Verdana">Service Key</font></td>
+				</tr>
+			</tbody></table>
+			<p style="margin-top: 0pt; margin-bottom: 0pt;">
+			<input name="nomeRegGBSD" size="20" type="text"> 
+			<input name="ServiceKeyGBSD" size="40" type="text">&nbsp;&nbsp; 
+			<input value="Estrai dettagli" name="Invia" type="submit"> <input value="Reimposta" name="B21" type="reset"></p>
+			<input name="comando" value="get_servicedetail" type="hidden">
+		</form>
+		<form method="post" action="ClientUDDIWeb" onsubmit="return validate_formGet(nomeRegGTMD,TModelKeyGTMD,this)">
+			<div style="background-color: #CCCCFF;">
+			<p style="margin-top: 0pt; margin-bottom: 0pt;" align="left"><b><u>
+			<font size="2" face="Verdana">Get TModel Detail</font></u></b><br>
+				</p>
+				</div>
+				<table id="table25" width="100%" border="0">
+			<tbody><tr>
+					<td width="149">
+					<p style="margin-top: 0pt; margin-bottom: 0pt;"><font size="1" face="Verdana">Nome 
+					registry</font></p></td>
+					<td><font size="1" face="Verdana">tModel Key</font></td>
+				</tr>
+			</tbody></table>
+			<p style="margin-top: 0pt; margin-bottom: 0pt;">
+			<input name="nomeRegGTMD" size="20" type="text"><font size="2" face="Verdana"> 
+			<input name="TModelKeyGTMD" size="40" type="text"></font>&nbsp;&nbsp; 
+			<input value="Estrai dettagli" name="Invia" type="submit"> <input value="Reimposta" name="B23" type="reset"></p>
+			<input name="comando" value="get_tmodeldetail" type="hidden">
+		</form>
+		<form method="post" action="ClientUDDIWeb" onsubmit="return validate_formGet(nomeRegGBTD,BindingKeyGBTD,this)">
+			<div style="background-color: #CCCCFF;">
+			<p style="margin-top: 0pt; margin-bottom: 0pt;" align="left"><b><u>
+			<font size="2" face="Verdana">Get Binding Detail</font></u></b><br>
+				</p>
+				</div>
+				<table id="table26" width="100%" border="0">
+			<tbody><tr>
+					<td width="148">
+					<p style="margin-top: 0pt; margin-bottom: 0pt;"><font size="1" face="Verdana">Nome 
+					registry</font></p></td>
+					<td><font size="1" face="Verdana">Binding Key</font></td>
+				</tr>
+			</tbody></table>
+			<p style="margin-top: 0pt; margin-bottom: 0pt;">
+			<input name="nomeRegGBTD" size="20" type="text"><font size="2" face="Verdana">
+			<input name="BindingKeyGBTD" size="40" type="text"></font>&nbsp;&nbsp; 
+			<input value="Estrai dettagli" name="Invia" type="submit"> <input value="Reimposta" name="B25" type="reset"></p>
+			<input name="comando" value="get_bindingdetail" type="hidden">
+		</form>
+		</td>
+	</tr>
+	</tbody></table>
+
+
+
+	<p>&nbsp;</p>
+	<table border="1" width="100%" id="table35" cellpadding="3">
+		<tr>
+			<td>
+		<div style="background-color: #CCFFFF">
+		<p style="margin-top: 0pt; margin-bottom: 0pt;" align="left"><b>
+		<font size="2" face="Verdana"><u>Help<a name="helpparametri"></a></u></font></b></p>
+		</div>
+		<p style="margin-top: 0pt; margin-bottom: 0pt;">&nbsp;</p>
+		<p style="margin-top: 0pt; margin-bottom: 0pt;">
+		<span style="font-family: Verdana;" lang="EN-GB"><font size="2">
+		ABBREVIAZIONI: BE = Business Entity, BS = Business Service, TM = TModel, 
+		BT = Binding Template, </font></span><font size="2" face="Verdana">
+		categoria = [standard, valore/codice], filtro = all || quant || acc || mix</font></p>
+		<p style="margin-top: 0pt; margin-bottom: 0pt;">&nbsp;</p>
+		<p style="margin-top: 0pt; margin-bottom: 0pt;">
+		<span style="font-family: Verdana;"><font size="2">NOTE SUI PARAMETRI:</font></span></p>
+		<p class="MsoNormal" style="text-align: justify; margin-top: 0pt; margin-bottom: 0pt;">&nbsp;</p>
+		<p class="MsoNormal" style="text-align: justify; margin-top: 0pt; margin-bottom: 0pt;">
+		<span style="font-family: Verdana;"><font size="2">&lt;</font></span><b><font size="2" face="Verdana">Filtro 
+					|| nome registry</font></b><span style="font-family: Verdana;"><font size="2">&gt;: 
+		specificare un filtro oppure un nome di registry UDDI in cui cercare. I 
+		"filtri" sono 4 
+		tipi di ottimizzazione/filtraggio dei registry UDDI prima delle ricerca:</font></span></p>
+		<table id="table36" style="border-collapse: collapse;" width="100%" border="1" bordercolor="#c0c0c0">
+			<tbody><tr>
+				<td>
+				<p class="MsoNormal" style="text-align: justify; margin-top: 0pt; margin-bottom: 0pt;">
+				<span style="font-family: Verdana;"><font size="2">all = vengono 
+				restituiti tutti i risultati estratti sequenzialmente da tutti i registry 
+				UDDI (default)</font></span></p>
+				<p class="MsoNormal" style="text-align: justify; margin-top: 0pt; margin-bottom: 0pt;">
+				<span style="font-family: Verdana;"><font size="2">quant = 
+				tutti i registry UDDI vengono ordinati ed usati in base al numero di elementi 
+				salvati per categoria, poi viene scartata la percentuale meno 
+				significativa</font></span></p>
+				<p class="MsoNormal" style="text-align: justify; margin-top: 0pt; margin-bottom: 0pt;">
+				<span style="font-family: Verdana;"><font size="2">acc = 
+				tutti i registry UDDI vengono ordinati ed usati in base al numero di accessi per 
+				categoria, poi vienescartata la percentuale meno significativa,
+				</font></span></p>
+				<p class="MsoNormal" style="text-align: left; margin-top: 0pt; margin-bottom: 0pt;">
+				<span style="font-family: Verdana;"><font size="2">mix = 
+				tutti i registry UDDI vengono ordinati ed usati in base al coefficiente di importanza = 
+				[num. elementi salvati per categ.] x [num. accessi per categ.], 
+				poi viene scartata la percentuale meno significativa</font></span></p></td>
+			</tr>
+		</tbody></table>
+		<p class="MsoNormal" style="text-align: justify; margin-top: 0pt; margin-bottom: 0pt;">&nbsp;</p>
+		<p class="MsoNormal" style="text-align: justify; margin-top: 0pt; margin-bottom: 0pt;">
+		<span style="font-family: Verdana;"><font size="2">&lt;<b>standard</b>&gt;: 3 
+		possibili standard</font></span></p>
+		<table id="table37" style="border-collapse: collapse;" width="100%" border="1" bordercolor="#c0c0c0">
+			<tbody><tr>
+				<td>
+				<p class="MsoNormal" style="text-align: justify; margin-top: 0pt; margin-bottom: 0pt;">
+				<span style="font-family: Verdana;"><font size="2">ISO3166 = 
+				codice formato da 2 caratteri identificativo della nazione (es.: 
+				IT, US, ecc.)</font></span></p>
+				<p class="MsoNormal" style="text-align: justify; margin-top: 0pt; margin-bottom: 0pt;">
+				<span style="font-family: Verdana;"><font size="2">NAICS = codice 
+				formato da 2 cifre identificativo della tipologia di attivita' (es.: 
+				51 - Information, 72 - Accommodation and Food Services, ecc.)</font></span></p>
+				<p class="MsoNormal" style="text-align: justify; margin-top: 0pt; margin-bottom: 0pt;">
+				<span style="font-family: Verdana;"><font size="2">UNSPSC = 
+				codice formato da 7 cifre identificativo di prodotti e/o servizi 
+				(es. 50000000 - Food Beverage and Tobacco Products, ecc.)</font></span></p>
+				<p class="MsoNormal" style="text-align: justify; margin-top: 0pt; margin-bottom: 0pt;">
+				<span style="font-family: Verdana;"><font size="2">null = nessuno 
+				standard (default), in questo caso &lt;tipo ricerca&gt; e 
+				&lt;percentuale&gt; non sono presi in considerazione (reimpostati a 'null')</font></span></p></td>
+			</tr>
+		</tbody></table>
+		<p class="MsoNormal" style="text-align: justify; margin-top: 0pt; margin-bottom: 0pt;">
+		<span style="font-family: Verdana;"><font size="2">&nbsp;</font></span></p>
+		<p class="MsoNormal" style="text-align: justify; margin-top: 0pt; margin-bottom: 0pt;">
+		<span style="font-family: Verdana;"><font size="2">&lt;<b>valore/codice 
+		relativo</b>&gt;: valore/codice relativo allo standard inserito (es. IT, 
+		33, 8000000, ecc.).</font></span></p>
+		<table id="table38" style="border-collapse: collapse;" width="100%" border="1" bordercolor="#c0c0c0">
+			<tbody><tr>
+				<td>
+				<form method="POST" action="--WEBBOT-SELF--">
+					<!--webbot bot="SaveResults" U-File="fpweb:///_private/form_results.csv" S-Format="TEXT/CSV" S-Label-Fields="TRUE" -->
+					<table id="table39" style="border-collapse: collapse;" width="100%" border="0" height="21">
+						<tbody><tr>
+							<td width="396"><b><font size="1" face="Verdana">
+							ISO3166</font></b></td>
+							<td width="400"><b><font size="1" face="Verdana">NAICS</font></b></td>
+							<td><b><font size="1" face="Verdana">UNSPSC</font></b></td>
+						</tr>
+					</tbody></table>
+					<p class="MsoNormal" style="text-align: justify; margin-top: 0pt; margin-bottom: 0pt;">
+					<font face="Verdana">
+					<font size="1">
+					<textarea rows="5" name="S1" cols="46" readonly="true" wrap="off">AFGHANISTAN - AF
+ALBANIA - AL
+ALGERIA - DZ
+AMERICAN SAMOA - AS
+ANDORRA - AD
+ANGOLA - AO
+ANGUILLA - AI
+ANTARCTICA - AQ
+ANTIGUA AND BARBUDA - AG
+ARGENTINA - AR
+ARMENIA - AM
+ARUBA - AW
+AUSTRALIA - AU
+AUSTRIA - AT
+AZERBAIJAN - AZ
+BAHAMAS - BS
+BAHRAIN - BH
+BANGLADESH - BD
+BARBADOS - BB
+BELARUS - BY
+BELGIUM - BE
+BELIZE - BZ
+BENIN - BJ
+BERMUDA - BM
+BHUTAN - BT
+BOLIVIA - BO
+BOSNIA AND HERZEGOVINA - BA
+BOTSWANA - BW
+BOUVET ISLAND - BV
+BRAZIL - BR
+BRITISH INDIAN OCEAN TERRITORY - IO
+BRUNEI DARUSSALAM - BN
+BULGARIA - BG
+BURKINA FASO - BF
+BURUNDI - BI
+CAMBODIA - KH
+CAMEROON - CM
+CANADA - CA
+CAPE VERDE - CV
+CAYMAN ISLANDS - KY
+CENTRAL AFRICAN REPUBLIC - CF
+CHAD - TD
+CHILE - CL
+CHINA - CN
+CHRISTMAS ISLAND - CX
+COCOS (KEELING) ISLANDS - CC
+COLOMBIA - CO
+COMOROS - KM
+CONGO - CG
+CONGO, THE DEMOCRATIC REPUBLIC OF THE - CD
+COOK ISLANDS - CK
+COSTA RICA - CR
+COTE D'IVOIRE - CI
+CROATIA - HR
+CUBA - CU
+CYPRUS - CY
+CZECH REPUBLIC - CZ
+DENMARK - DK
+DJIBOUTI - DJ
+DOMINICA - DM
+DOMINICAN REPUBLIC - DO
+EAST TIMOR - TP
+ECUADOR - EC
+EGYPT - EG
+EL SALVADOR - SV
+EQUATORIAL GUINEA - GQ
+ERITREA - ER
+ESTONIA - EE
+ETHIOPIA - ET
+FALKLAND ISLANDS (MALVINAS) - FK
+FAROE ISLANDS - FO  - 
+FIJI - FJ
+FINLAND - FI
+FRANCE - FR
+FRENCH GUIANA - GF
+FRENCH POLYNESIA - PF
+FRENCH SOUTHERN TERRITORIES - TF
+GABON - GA
+GAMBIA - GM
+GEORGIA - GE
+GERMANY - DE
+GHANA - GH
+GIBRALTAR - GI
+GREECE - GR
+GREENLAND - GL
+GRENADA - GD
+GUADELOUPE - GP
+GUAM - GU
+GUATEMALA - GT
+GUINEA - GN
+GUINEA-BISSAU - GW
+GUYANA - GY
+HAITI - HT
+HEARD ISLAND AND MCDONALD ISLANDS - HM
+HOLY SEE (VATICAN CITY STATE) - VA
+HONDURAS - HN
+HONG KONG - HK
+HUNGARY - HU
+ICELAND - IS
+INDIA - IN
+INDONESIA - ID
+IRAN, ISLAMIC REPUBLIC OF - IR
+IRAQ - IQ
+IRELAND - IE
+ISRAEL - IL
+ITALY - IT
+JAMAICA - JM
+JAPAN - JP
+JORDAN - JO
+KAZAKSTAN - KZ
+KENYA - KE
+KIRIBATI - KI
+KOREA, DEMOCRATIC PEOPLE'S REPUBLIC OF - KP
+KOREA, REPUBLIC OF - KR
+KUWAIT - KW
+KYRGYZSTAN - KG
+LAO PEOPLE'S DEMOCRATIC REPUBLIC - LA
+LATVIA - LV
+LEBANON - LB
+LESOTHO - LS
+LIBERIA - LR
+LIBYAN ARAB JAMAHIRIYA - LY
+LIECHTENSTEIN - LI
+LITHUANIA - LT
+LUXEMBOURG - LU
+MACAU - MO
+MACEDONIA, THE FORMER YUGOSLAV REPUBLIC OF - MK
+MADAGASCAR - MG
+MALAWI - MW
+MALAYSIA - MY
+MALDIVES - MV
+MALI - ML
+MALTA - MT
+MARSHALL ISLANDS - MH
+MARTINIQUE - MQ
+MAURITANIA - MR
+MAURITIUS - MU
+MAYOTTE - YT
+MEXICO - MX
+MICRONESIA, FEDERATED STATES OF - FM
+MOLDOVA, REPUBLIC OF - MD
+MONACO - MC
+MONGOLIA - MN
+MONTSERRAT - MS
+MOROCCO - MA
+MOZAMBIQUE - MZ
+MYANMAR - MM
+NAMIBIA - NA
+NAURU - NR
+NEPAL - NP
+NETHERLANDS - NL
+NETHERLANDS ANTILLES - AN
+NEW CALEDONIA - NC
+NEW ZEALAND - NZ
+NICARAGUA - NI
+NIGER - NE
+NIGERIA - NG
+NIUE - NU
+NORFOLK ISLAND - NF
+NORTHERN MARIANA ISLANDS - MP
+NORWAY - NO
+OMAN - OM
+PAKISTAN - PK
+PALAU - PW
+PALESTINIAN TERRITORY, OCCUPIED - PS
+PANAMA - PA
+PAPUA NEW GUINEA - PG
+PARAGUAY - PY
+PERU - PE
+PHILIPPINES - PH
+PITCAIRN - PN
+POLAND - PL
+PORTUGAL - PT
+PUERTO RICO - PR
+QATAR - QA
+REUNION - RE
+ROMANIA - RO
+RUSSIAN FEDERATION - RU
+RWANDA - RW
+SAINT HELENA - SH
+SAINT KITTS AND NEVIS - KN
+SAINT LUCIA - LC
+SAINT PIERRE AND MIQUELON - PM
+SAINT VINCENT AND THE GRENADINES - VC
+SAMOA - WS
+SAN MARINO - SM
+SAO TOME AND PRINCIPE - ST
+SAUDI ARABIA - SA
+SENEGAL - SN
+SEYCHELLES - SC
+SIERRA LEONE - SL
+SINGAPORE - SG
+SLOVAKIA - SK
+SLOVENIA - SI
+SOLOMON ISLANDS - SB
+SOMALIA - SO
+SOUTH AFRICA - ZA
+SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS - GS
+SPAIN - ES
+SRI LANKA - LK
+SUDAN - SD
+SURINAME - SR
+SVALBARD AND JAN MAYEN - SJ
+SWAZILAND - SZ
+SWEDEN - SE
+SWITZERLAND - CH
+SYRIAN ARAB REPUBLIC - SY
+TAIWAN, PROVINCE OF CHINA - TW
+TAJIKISTAN - TJ
+TANZANIA, UNITED REPUBLIC OF - TZ
+THAILAND - TH
+TOGO - TG
+TOKELAU - TK
+TONGA - TO
+TRINIDAD AND TOBAGO - TT
+TUNISIA - TN
+TURKEY - TR
+TURKMENISTAN - TM
+TURKS AND CAICOS ISLANDS - TC
+TUVALU - TV
+UGANDA - UG
+UKRAINE - UA
+UNITED ARAB EMIRATES - AE
+UNITED KINGDOM - GB
+UNITED STATES - US
+UNITED STATES MINOR OUTLYING ISLANDS - UM
+URUGUAY - UY
+UZBEKISTAN - UZ
+VANUATU - VU
+VENEZUELA - VE
+VIET NAM - VN
+VIRGIN ISLANDS, BRITISH - VG
+VIRGIN ISLANDS, U.S. - VI
+WALLIS AND FUTUNA - WF
+WESTERN SAHARA - EH
+YEMEN - YE
+YUGOSLAVIA - YU
+ZAMBIA - ZM
+ZIMBABWE - ZW</textarea> </font>
+					<textarea rows="5" name="S2" cols="47" readonly="true" wrap="off">11 - Agriculture, Forestry, Fishing and Hunting
+21 - Mining
+22 - Utilities
+23 - Construction
+31 - Manufacturing-31
+32 - Manufacturing-32
+33 - Manufacturing-33
+42 - Wholesale Trade
+44 - Retail Trade-44
+45 - Retail Trade-45
+48 - Transportation and Warehousing-48
+49 - Transportation and Warehousing-49
+51 - Information
+52 - Finance and Insurance
+53 - Real Estate and Rental and Leasing
+54 - Professional, Scientific, and Technical Services
+55 - Management of Companies and Enterprises
+56 - Administrative and Support and Waste Management and Remediation Services
+61 - Educational Services
+62 - Health Care and Social Assistance
+71 - Arts, Entertainment, and Recreation
+72 - Accommodation and Food Services
+81 - Other Services (except Public Administration)
+92 - Public Administration</textarea>
+					<textarea rows="5" name="S3" cols="47" readonly="true" wrap="off">10000000
+- Live Plant and Animal Material and Accessories and Supplies
+20000000 - Mining and Well Drilling Machinery and Accessories
+30000000 - Structures and Building and Construction and Manufacturing
+Components and Supplies
+40000000 - Distribution and Conditioning Systems and Equipment and
+Components
+50000000 - Food Beverage and Tobacco Products
+60000000 - Musical Instruments and Games and Toys and Arts and Crafts
+and Educational Equipment and Materials and Accessories and Supplies
+70000000 - Farming and Fishing and Forestry and Wildlife Contracting
+Services
+80000000 - Management and Business Professionals and Administrative
+Services
+90000000 - Travel and Food and Lodging and Entertainment Services</textarea></font></p>
+				</form>
+				</td>
+			</tr>
+		</tbody></table>
+		<p class="MsoNormal" style="text-align: justify; margin-top: 0pt; margin-bottom: 0pt;">&nbsp;</p>
+		<p class="MsoNormal" style="text-align: justify; margin-top: 0pt; margin-bottom: 0pt;">
+		<span style="font-family: Verdana;"><font size="2">&lt;</font></span><b><font size="2" face="Verdana">%</font></b><span style="font-family: Verdana;"><font size="2">&gt;:
+percentuale di registry meno significativi da scartare [(0% default),
+25%, 50%, 75%]. Viene presa in considerazione solo se i registry UDDI
+sono piu' di 10.</font></span></p>
+		<p class="MsoNormal" style="text-align: justify; margin-top: 0pt; margin-bottom: 0pt;">&nbsp;</p>
+		<p class="MsoNormal" style="text-align: justify; margin-top: 0pt; margin-bottom: 0pt;">
+		<span style="font-family: Verdana;"><font size="2">&lt;<b>findQualifier</b>&gt;: 
+		(parametro case sensitive) 6 possibili modi per ottenere/ordinare i 
+		risultati (per ogni registry UDDI)</font></span></p>
+		<table id="table40" style="border-collapse: collapse;" width="100%" border="1" bordercolor="#c0c0c0">
+			<tbody><tr>
+				<td>
+				<p class="MsoNormal" style="text-align: justify; margin-top: 0pt; margin-bottom: 0pt;">
+				<span style="font-family: Verdana;"><font size="2">
+				caseSensitiveMatch = imposta il 'case sensitive mode' sui nomi 
+				inseriti per la ricerca (default)</font></span></p>
+				<p class="MsoNormal" style="text-align: justify; margin-top: 0pt; margin-bottom: 0pt;">
+				<span style="font-family: Verdana;"><font size="2">exactNameMatch 
+				= vengono restituiti solo i risultati contenenti i nomi uguali 
+				esattamente a quelli inseriti per la ricerca</font></span></p>
+				<p class="MsoNormal" style="text-align: justify; margin-top: 0pt; margin-bottom: 0pt;">
+				<span style="font-family: Verdana;"><font size="2">sortByDateAsc 
+				= ordinamento crescente in base a data ultimo aggiornamento (piu' 
+				aggiornati restituiti per primi)</font></span></p>
+				<p class="MsoNormal" style="text-align: justify; margin-top: 0pt; margin-bottom: 0pt;">
+				<span style="font-family: Verdana;"><font size="2">sortByDateDesc 
+				= ordinamento decrescente in base a data ultimo aggiornamento 
+				(meno aggiornati restituiti per primi)</font></span></p>
+				<p class="MsoNormal" style="text-align: justify; margin-top: 0pt; margin-bottom: 0pt;">
+				<span style="font-family: Verdana;"><font size="2">sortByNameAsc 
+				= ordine alfabetico crescente sul nome</font></span></p>
+				<p class="MsoNormal" style="text-align: justify; margin-top: 0pt; margin-bottom: 0pt;">
+				<span style="font-family: Verdana;"><font size="2">sortByNameDesc 
+				= ordine alfabetico descrescente sul nome</font></span></p></td>
+			</tr>
+		</tbody></table>
+			</td>
+		</tr>
+	</table>
+
+
+
+</body></html>

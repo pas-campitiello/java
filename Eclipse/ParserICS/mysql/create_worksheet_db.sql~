@@ -1,0 +1,99 @@
+drop database IF EXISTS worksheet_db;
+
+create schema worksheet_db;
+
+use worksheet_db;
+
+create table Evento
+(
+	id_evento	INT AUTO_INCREMENT primary key,
+	data_inizio_evento	DATE,
+	data_fine_evento	DATE,
+	tipo_evento	VARCHAR(255)
+);
+
+create table Utente
+(
+	id_utente 	INT AUTO_INCREMENT primary key,
+	matricola	VARCHAR(10),
+	username	VARCHAR(255),
+	password	VARCHAR(255), 
+	nome		VARCHAR(255),
+	cognome		VARCHAR(255),
+	
+	mail 		VARCHAR(255),
+	ruolo		VARCHAR(50)
+);
+
+
+create table Progetto
+(
+	id_progetto	INT AUTO_INCREMENT primary key,
+	nome_pr		VARCHAR(255),
+	data_inizio	DATE,
+	data_fine	DATE,
+	id_utente	INT,
+
+	foreign key (id_utente) references Utente(id_utente)
+					ON DELETE SET NULL
+					ON UPDATE CASCADE 
+);
+
+create table WorkPackage
+(
+	id_wp		INT AUTO_INCREMENT primary key,
+	nome_wp		VARCHAR(255),
+	activity	VARCHAR(255),
+	id_progetto	INT,
+
+	foreign key (id_progetto) references Progetto(id_progetto)
+					ON DELETE SET NULL
+					ON UPDATE CASCADE 
+);
+
+create table Vincolo
+(
+	id_vincolo	INT AUTO_INCREMENT primary key,
+	id_utente	INT,
+	data_vincolo	DATE,
+	ore_occupate	INT,
+	
+	foreign key (id_utente) references Utente(id_utente)
+					ON DELETE SET NULL
+					ON UPDATE CASCADE
+);
+
+create table Lavora
+(
+	id_utente	INT,
+	id_wp		INT,
+	
+	primary key (id_utente,id_wp),
+
+	foreign key (id_utente) references Utente(id_utente)
+					ON DELETE CASCADE
+					ON UPDATE CASCADE,
+
+	foreign key (id_wp) references WorkPackage(id_wp)
+					ON DELETE CASCADE
+					ON UPDATE CASCADE 
+);
+
+create table OreLavorate
+(
+	id_utente	INT,
+	id_wp		INT,
+	activity	VARCHAR(255),
+	data		DATE,
+	ore		INT,
+
+	primary key (id_utente,id_wp),
+
+	foreign key (id_utente) references Utente(id_utente)
+					ON DELETE CASCADE
+					ON UPDATE CASCADE,
+	
+	foreign key (id_wp) references WorkPackage(id_wp)
+					ON DELETE CASCADE
+					ON UPDATE CASCADE 
+);
